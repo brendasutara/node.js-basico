@@ -1,15 +1,24 @@
 //las funciones son objetos de primer nivel
-function soyAsincrona(miCallback) {
+function hola(nombre, miCallback) {
     setTimeout(function () {
-        console.log('Estoy siendo asincrona');
-        miCallback();
+        console.log('Hola ' + nombre);
+        miCallback(nombre);
     }, 1000)
+}
+
+function adios(nombre, otroCallback) {
+    setTimeout(function () {
+        console.log('Adios ' + nombre);
+        otroCallback();
+    }, 1000);
 }
 
 console.log('Iniciando el proceso...');
 //una funcion dentro de otra función
-soyAsincrona(function() {
-    console.log('Termiando el proceso');
+hola('Brenda', function(nombre) {
+    adios (nombre , function() {
+        console.log('Termiando el proceso');
+    });
 });
 
 //PROBLEMA A RESOLVER:
